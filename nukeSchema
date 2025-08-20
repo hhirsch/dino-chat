@@ -1,0 +1,24 @@
+#!/bin/bash
+DATABASE="dino"
+
+# SQL commands
+SQL_COMMANDS="
+DROP TABLE IF EXISTS messages;
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    sender VARCHAR(255) NOT NULL,
+    receiver VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO messages (sender, receiver, message) VALUES
+('Alice', 'Bob', 'Hello Bob! How are you?'),
+('Bob', 'Alice', 'Hi Alice! I am good, thanks!'),
+('Charlie', 'Alice', 'Hey Alice, are you coming to the party?'),
+('Alice', 'Charlie', 'Yes, I will be there!'),
+('Bob', 'Charlie', 'What time is the party?');
+"
+
+# Execute SQL commands
+psql -h "$(pwd)" -d "$DATABASE" -c "$SQL_COMMANDS"

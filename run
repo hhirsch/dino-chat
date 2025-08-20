@@ -1,0 +1,2 @@
+#!/bin/bash
+deno run --allow-sys --allow-write --allow-read --allow-net --allow-env main.ts
